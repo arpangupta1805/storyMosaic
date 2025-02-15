@@ -60,6 +60,7 @@ export default function CreateFanFiction() {
           sourceStory: storyid,
         }),
       });
+      console.log(storyid);
 
       const result = await response.json();
       setMessage(result.message);

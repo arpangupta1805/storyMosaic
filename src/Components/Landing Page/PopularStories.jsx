@@ -1,63 +1,5 @@
-// import React from "react";
-// import Navbaar from "./Navbaar";
-// import { useNavigate } from "react-router-dom";
-
-
-
-
-
-// const StoryCard = () => {
-//   // here we have to fetch top 12 stories from the database
-//   // data = await fetch('http://localhost:5000/api/v1/stories')
-//   // topstories = data.slice(0, 12)
-  
-//   // const [stories, setstories] = useState(topstories)
-//   const stories = []
-//   const navigate = useNavigate();
-//   const handlecard = (key) => {
-//     navigate(`/${key}/read`);
-//   }
-
-//   return (
-//     <>
-    
-//     <div className="bg-gray-100 min-h-screen p-10">
-//       <h2 className="text-3xl font-bold">Discover Stories</h2>
-//       <p className="text-gray-600 mt-2 mb-6">
-//         Explore a world of unique stories from talented writers around the globe. Find your next favorite story here.
-//       </p>
-
-//       {stories.length === 0 ? (
-//         <div className="flex items-center justify-center h-64 w-full bg-white rounded-lg shadow-md">
-//           <p className="text-gray-500 text-xl font-semibold">No Story to Display</p>
-//         </div>
-//       ) : (
-//       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-//         {stories.map((story) => (
-//           <div key={story.key} className="bg-white p-5 rounded-lg shadow-md">
-//             <h3 onClick={()=>handlecard(story.key)} className="text-xl font-semibold hover:underline cursor-pointer">{story.title}</h3>
-//             <p className="text-gray-500 text-sm">by {story.author}</p>
-//             <p className="text-gray-600 mt-2">
-//                 {story.description.length > 200
-//                   ? `${story.description.substring(0, 200)}...`
-//                   : story.description}
-//               </p>
-//             <div className="mt-4 flex items-center text-gray-500">
-//               <span className="mr-2">❤️</span> {story.likes}
-//             </div>
-//           </div>
-//         ))}
-//       </div>
-//       )}
-//     </div>
-//     </>
-//   );
-// };
-
-// export default StoryCard;
-
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const StoryCard = () => {
   const [stories, setStories] = useState([]);
@@ -140,7 +82,7 @@ const StoryCard = () => {
               >
                 {story.title}
               </h3>
-              <p className="text-gray-500 text-sm">by {story.author}</p>
+              <p className="text-gray-500 text-sm">by <span className="hover:underline cursor-pointer"> <Link to={`/user/${story.author}`}>{story.author}</Link></span></p>
               <p className="text-gray-600 mt-2">
                 {story.description.length > 200
                   ? `${story.description.substring(0, 200)}...`

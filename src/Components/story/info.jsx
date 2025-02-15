@@ -1,60 +1,3 @@
-// import React from "react";
-// import NavbarStory from "./navbar_story";
-
-// const InfoSection = (author, member) => {
-//   const members = [
-//     { name: "Alex Kumar", username: "alex.kumar", role: "Author", stories: 12 },
-//     { name: "Sarah Chen", username: "sarah.chen", role: "Editor", stories: 8 },
-//     { name: "James Mitchell", username: "james.mitchell", role: "Author", stories: 15 },
-//     { name: "Maria Garcia", username: "maria.garcia", role: "Author", stories: 6 },
-//     { name: "Alex Kumar", username: "alex.kumar", role: "Author", stories: 12 },
-//     { name: "Sarah Chen", username: "sarah.chen", role: "Editor", stories: 8 },
-//     { name: "James Mitchell", username: "james.mitchell", role: "Author", stories: 15 },
-//     { name: "Maria Garcia", username: "maria.garcia", role: "Author", stories: 6 },
-//   ];
-
-//   return (
-//     <>
-//     <NavbarStory />
-//     <div className="mx-[10%] my-[5%] p-6 bg-white rounded-lg shadow-lg">
-      
-//       {/* Profile Section */}
-//       <div className="items-center space-x-4">
-//       <h3 className="my-2 text-xl font-semibold">Author</h3>
-//         <div className="">
-//           <h2 className="text-xl font-bold">{author.name}Arpan Gupta</h2>
-//           <p className="text-gray-500 hover:underline cursor-pointer">@{author.username}arpan5218</p>
-//         </div>
-//       </div>
-
-//       {/* Community Members */}
-//       <h3 className="mt-6 text-xl font-semibold">Editors</h3>
-//       <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
-//         {members.map((member, index) => (
-//           <div
-//             key={index}
-//             className="p-4 bg-white border rounded-lg shadow-sm flex items-center space-x-4 hover:drop-shadow-lg"
-//           >
-//             <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center text-lg font-semibold text-gray-600">
-//               {member.name.charAt(0)}
-//             </div>
-//             <div>
-//               <h4 className="font-semibold ">{member.name}</h4>
-//               <p className="text-gray-500 hover:underline cursor-pointer">@{member.username}</p>
-//               <p className="text-gray-400 text-sm">
-//                 {member.role} &bull; {member.stories} stories
-//               </p>
-//             </div>
-//           </div>
-//         ))}
-//       </div>
-//     </div>
-//     </>
-//   );
-// };
-
-// export default InfoSection;
-
 import React, { useState, useEffect } from "react";
 import NavbarStory from "./navbar_story";
 import { useNavigate, useParams } from "react-router-dom";
@@ -93,12 +36,45 @@ const InfoSection = () => {
 
   if (!story) return <div>Loading...</div>;  // Show loading until the story data is fetched
 
-  const addEditor = () => {
-    // Add a new editor to the story
+  const addEditor = async () => {
     const newEditor = prompt("Enter the username of the editor to add:");
     if (newEditor) {
-      setMembers([...members, newEditor]);
-      const response = fetch(`http://localhost:3000/api/add-editor`, {
+      try {
+        const response = await fetch(`http://localhost:3000/api/add-editor`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify({
+            storyId: storyid,
+            username: newEditor,
+            author: story.author,
+          }),
+        });
+  
+        const result = await response.json();
+        console.log("Server Response:", result.message);
+  
+        if (response.ok) {
+          setMembers([...members, newEditor]); // Update state only if successful
+          alert(result.message);
+        } else {
+          alert("Error: " + result.message);
+        }
+      } catch (error) {
+        console.error("Error adding editor:", error);
+        alert("Failed to add editor. Try again.");
+      }
+    }
+  };
+
+  const handleDeleteEditor = async (username) => { 
+    const confirmDelete = window.confirm(`Are you sure you want to remove @${username} as an editor?`);
+    if (!confirmDelete) return;
+  
+    try {
+      const response = await fetch(`http://localhost:3000/api/remove-editor`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -106,12 +82,26 @@ const InfoSection = () => {
         },
         body: JSON.stringify({
           storyId: storyid,
-          username: newEditor,
+          username: username,
           author: story.author,
         }),
       });
+  
+      const result = await response.json();
+      console.log("Server Response:", result.message);
+  
+      if (response.ok) {
+        setMembers(members.filter(member => member !== username)); // Update state
+        alert(result.message);
+      } else {
+        alert("Error: " + result.message);
+      }
+    } catch (error) {
+      console.error("Error removing editor:", error);
+      alert("Failed to remove editor. Try again.");
     }
-  }
+  };
+  
 
   return (
     <>
@@ -144,7 +134,8 @@ const InfoSection = () => {
               <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center text-lg font-semibold text-gray-600">
                 {member.charAt(0)}  {/* First letter of member's name */}
               </div>
-              <div>
+              <div className="flex items-center justify-between w-full">
+                <div>
                 <h4 className="font-semibold ">{member}</h4>
                 <p
                   className="text-gray-500 hover:underline cursor-pointer"
@@ -152,6 +143,8 @@ const InfoSection = () => {
                 >
                   @{member}
                 </p>
+                </div>
+                <div onClick={() => handleDeleteEditor(member)} className="text-red-500 text-4xl cursor-pointer">-</div>
               </div>
             </div>
           ))}

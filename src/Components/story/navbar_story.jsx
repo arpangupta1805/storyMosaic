@@ -1,11 +1,13 @@
 import React from 'react'
-import { Link, useParams } from 'react-router-dom'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 
 
 const NavbarStory = () => {
   const {storyid} = useParams()
   const deleteStory = () => {
+    let ask = confirm('Are you sure you want to delete this story?')
+    if (ask){
     fetch(`http://localhost:3000/api/delete-story`, {
       method: 'POST',
       headers: {
@@ -18,6 +20,7 @@ const NavbarStory = () => {
         if (response.ok) {
           alert('Story deleted successfully');
           window.location.href = '/';
+          // <Link to='/'/>
         } else {
           alert('Failed to delete story');
         }
@@ -25,8 +28,7 @@ const NavbarStory = () => {
       .catch((error) => {
         console.error('Error deleting story:', error);
       });
-
-      
+    }
   }
   return (
     <nav className='bg-gray-100 m-2'>
