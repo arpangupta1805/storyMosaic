@@ -1,26 +1,3 @@
-// import React from 'react'
-// import { Link } from 'react-router-dom'
-
-// const Navbaar = () => {
-
-//   return (
-//     <nav className="w-full flex justify-between items-center py-4 px-4">
-//         <h1 className="text-2xl font-semibold cursor-pointer text-blue-700"><Link to='/'>StoryMosaic</Link></h1>
-        
-//         <div className="flex items-center space-x-4 pr-4">
-//         <ul className='flex space-x-4'>
-//           <li className="pr-4 cursor-pointer hover:underline"><Link to='/'>Home</Link></li>
-//           <li className="pr-4 cursor-pointer hover:underline"><Link to='/popular'>Popular Stories</Link></li>
-//         </ul>
-//           <button className="text-gray-600 pr-4 cursor-pointer hover:underline"><Link to='/authentication'>Sign In</Link></button>
-//           <button className="bg-blue-700 text-white px-4 py-2 rounded-lg"><Link to='/authentication'>Sign Up</Link></button>
-//         </div>
-//       </nav>
-//   )
-// }
-
-// export default Navbaar
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -88,6 +65,9 @@ const Navbaar = () => {
         <ul className="flex space-x-4">
           <li className="pr-4 cursor-pointer hover:underline">
             <Link to="/">Home</Link>
+          </li>
+          <li className="pr-4 cursor-pointer hover:underline">
+            <Link to="/about">About</Link>
           </li>
           <li className="pr-4 cursor-pointer hover:underline">
             <Link to="/popular">Popular Stories</Link>

@@ -14,6 +14,7 @@ import Errorpage from "./Components/Errorpage";
 import CreateStory from "./Components/Dashboard/createstory";
 import Compare from "./Components/story/compare";
 import CreateFanFiction from "./Components/story/create_fan_fiction";
+import About from "./Components/about";
 
 
 
@@ -25,7 +26,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        {/* <Route path="/about" element={<About />} /> */}
+        <Route path="/about" element={<About />} />
         <Route path="/authentication" element={<AuthPage />} />
         <Route path="/popular" element={<StoryCard />} />
         <Route path="/user/:username" element={<Dashboard />} />
