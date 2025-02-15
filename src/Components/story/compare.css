@@ -1,0 +1,11 @@
+.added {
+    background-color: rgba(7, 192, 7, 0.365);
+    color: gray;
+    font: 1rem 'Fira Code', monospace;
+}
+
+.deleted {
+    background-color: rgba(255, 0, 0, 0.372);
+    color: gray;
+    font: 1rem 'Fira Code', monospace, line-through;
+}
