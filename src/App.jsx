@@ -13,6 +13,7 @@ import LandingPage from "./Components/Landing Page/Landingpage";
 import Errorpage from "./Components/Errorpage";
 import CreateStory from "./Components/Dashboard/createstory";
 import Compare from "./Components/story/compare";
+import CreateFanFiction from "./Components/story/create_fan_fiction";
 
 
 
@@ -38,6 +39,7 @@ function App() {
         <Route path="/story/:storyid/info" element={<InfoSection />} />
         <Route path="/create" element={<CreateStory />} />
         <Route path="*" element={<Errorpage />} />
+        <Route path="/create-fanfiction/:storyid" element={<CreateFanFiction />} />
       </Routes>
     </Router>
     </>

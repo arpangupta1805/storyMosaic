@@ -73,8 +73,6 @@ const InfoSection = () => {
       try {
         const response = await fetch(`http://localhost:3000/api/stories/${storyid}`);
         const data = await response.json();
-        members = data.editors;
-
         if (data) {
           setStory(data);  // Store the story data
           setMembers(data.editors);  // Store the editors
