@@ -40,6 +40,16 @@ const InfoSection = () => {
     const newEditor = prompt("Enter the username of the editor to add:");
     if (newEditor) {
       try {
+        // Step 1: Check if the username exists
+        const checkResponse = await fetch(`http://localhost:3000/api/check-username?username=${newEditor}`);
+        const checkResult = await checkResponse.json();
+  
+        if (!checkResult.exists) {
+          alert("Error: No such username exists!");
+          return; // Stop execution if username does not exist
+        }
+  
+        // Step 2: If user exists, proceed to add as editor
         const response = await fetch(`http://localhost:3000/api/add-editor`, {
           method: "POST",
           headers: {
@@ -68,6 +78,7 @@ const InfoSection = () => {
       }
     }
   };
+  
 
   const handleDeleteEditor = async (username) => { 
     const confirmDelete = window.confirm(`Are you sure you want to remove @${username} as an editor?`);
@@ -83,7 +94,7 @@ const InfoSection = () => {
         body: JSON.stringify({
           storyId: storyid,
           username: username,
-          author: story.author,
+          author: story.name,
         }),
       });
   
@@ -109,22 +120,20 @@ const InfoSection = () => {
       <div className="mx-[10%] my-[5%] p-6 bg-white rounded-lg shadow-lg">
         {/* Profile Section */}
         <div className="items-center space-x-4">
-          <h3 className="my-2 text-xl font-semibold">Author</h3>
-          <div className="">
-            <h2 className="text-xl font-bold">{story.title}</h2>
-            <p
+          <h3 className="my-2 text-xl font-semibold"><span className="">Author</span><span className="text-gray-500"> @</span><span
               className="text-gray-500 hover:underline cursor-pointer"
               onClick={() => handleUsernameClick(story.author)}  // Redirect to author's dashboard
             >
-              @{story.author}
-            </p>
+              {story.author}
+            </span></h3>
+          <div className="">
+            <h2 className="text-xl font-bold"><span className="font-bold">Title</span><span className="text-gray-500 font-normal">&nbsp;&nbsp;{story.title}</span></h2>
+            
           </div>
         </div>
-        <br></br>
-        <br></br>
-        <button onClick={()=>addEditor()} className="p-4 bg-blue-600 text-white py-2 rounded-md mt-6 cursor-pointer hover:bg-blue-500 transition-all duration-300">Add Editor</button>
         {/* Community Members (Editors) */}
-        <h3 className="mt-6 text-xl font-semibold">Editors</h3>
+        <div className="rounded-xl p-4 bg-gray-100 mt-6">
+        <h3 className="text-xl font-semibold underline">Editors</h3>
         <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
           {members.map((member, index) => (
             <div
@@ -149,6 +158,8 @@ const InfoSection = () => {
             </div>
           ))}
         </div>
+        </div>
+        <button onClick={()=>addEditor()} className="p-4 bg-blue-600 text-white py-2 rounded-md mt-6 cursor-pointer hover:bg-blue-500 transition-all duration-300">Add Editor</button>
       </div>
     </>
   );

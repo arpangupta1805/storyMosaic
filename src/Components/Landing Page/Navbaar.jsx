@@ -83,7 +83,7 @@ const Navbaar = () => {
             <button className="text-gray-600 pr-4 cursor-pointer hover:underline">
               <Link to="/authentication">Sign In</Link>
             </button>
-            <button className="bg-blue-700 text-white px-4 py-2 rounded-lg">
+            <button className="bg-blue-700 cursor-pointer text-white px-4 py-2 rounded-lg">
               <Link to="/authentication">Sign Up</Link>
             </button>
           </>

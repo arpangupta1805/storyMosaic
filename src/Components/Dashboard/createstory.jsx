@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 export default function CreateStory() {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -11,12 +13,13 @@ export default function CreateStory() {
   const [message, setMessage] = useState("");
 
   const onSubmit = async (data) => {
+    let confirm = window.confirm("Are you sure you want to publish this story?");
+    if (confirm === false) {return};
     setLoading(true);
     setMessage("");
 
     const username = localStorage.getItem("username");
     const token = localStorage.getItem("token");
-
     if (!username || !token) {
       setMessage("Authentication error. Please log in.");
       setLoading(false);
@@ -41,6 +44,9 @@ export default function CreateStory() {
 
       const result = await response.json();
       setMessage(result.message);
+      if (response.ok) {
+        navigate(`/user/${username}`);
+      }
     } catch (error) {
       setMessage("Failed to publish the story.");
     } finally {
@@ -90,7 +96,7 @@ export default function CreateStory() {
             <textarea
               {...register("content", {
                 required: "Story content is required",
-                minLength: { value: 400, message: "Min length is 400" },
+                minLength: { value: 100, message: "Min length is 100" },
               })}
               className="w-full p-3 hover:border cursor-pointer border-gray-300 rounded-lg mt-2 h-64"
               placeholder="Write your story here..."

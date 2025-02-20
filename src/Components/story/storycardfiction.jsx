@@ -39,7 +39,7 @@ const FictionCardFiction = () => {
 
   return (
     <>
-      <button className='bg-blue-600 rounded-l p-4 mx-10' onClick={createFanFiction}>Create Fan Fiction</button>
+      <button className='bg-blue-600 rounded-xl py-3 px-2 font-stretch-110% mx-5 my-3 cursor-pointer text-white font-light hover:text-blue-950' onClick={createFanFiction}>Create Fan Fiction</button>
       <div className="bg-gray-100 min-h-screen p-10">
         <h2 className="text-3xl font-bold">Fanfictions</h2>
         {fictions.length === 0 ? (

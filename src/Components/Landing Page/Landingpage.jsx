@@ -18,7 +18,7 @@ const LandingPage = () => {
             Join a vibrant community of storytellers, editors, and readers. Create, collaborate, and discover stories that matter.
           </p>
           <div className="mt-6 flex flex-col md:flex-row space-y-3 md:space-y-0 md:space-x-4">
-            <button className="bg-blue-700 text-white px-6 py-3 rounded-lg text-lg" >
+            <button className="bg-blue-700 cursor-pointer text-white px-6 py-3 rounded-lg text-lg" >
             <Link to="/popular">Explore Stories</Link>
             </button>
           </div>

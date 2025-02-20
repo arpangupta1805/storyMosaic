@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 
 
 const NavbarStory = () => {
+  const username= localStorage.getItem('username')
   const {storyid} = useParams()
   const deleteStory = () => {
     let ask = confirm('Are you sure you want to delete this story?')
@@ -38,7 +39,7 @@ const NavbarStory = () => {
         <li className='hover:underline cursor-pointer bordr-r w-[16.7%] hover:bg-gray-200 text-center py-2'><NavLink className={(e)=>{return e.isActive?"font-bold underline font-mono font-stretch-150%":""}} to={`/story/${storyid}/request`}><div className='w-full'>Request</div></NavLink></li>
         <li className='hover:underline cursor-pointer borer-r w-[16.7%] hover:bg-gray-200 text-center py-2'><NavLink className={(e)=>{return e.isActive?"font-bold underline font-mono font-stretch-150%":""}} to={`/story/${storyid}/fanfictions`}><div className='w-full'>Fanfictions</div></NavLink></li>
         <li className='hover:underline cursor-pointer boder-r w-[16.7%] hover:bg-gray-200 text-center py-2'><NavLink className={(e)=>{return e.isActive?"font-bold underline font-mono font-stretch-150%":""}} to={`/story/${storyid}/info`}><div className='w-full'>Info</div></NavLink></li>
-        <li className='cursor-pointer w-[16.7%] hover:bg-red-400 hover:text-white text-center py-2' onClick={() => deleteStory()}>Delete</li>
+        <li className='cursor-pointer w-[16.7%] hover:bg-red-400 hover:text-white text-center py-2' onClick={() => deleteStory()}><NavLink to={`/user/${username}`}><div className='w-full'>Delete</div></NavLink></li>
       </ul>
     </nav>
   )

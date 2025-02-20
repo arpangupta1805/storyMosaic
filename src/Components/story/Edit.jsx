@@ -1,35 +1,3 @@
-// import React from 'react'
-// import NavbarStory from './navbar_story'
-// import { useParams } from 'react-router-dom'
-
-// const handleSave = () => {
-//     alert('Saved')
-// }
-
-// const Edit = (story) => {
-
-//   const {storyid} = useParams()
-// //   Here we have to fetch the story with the id from the database
-//   return (
-//     <>
-//     <NavbarStory />
-//         <div className='flex justify-center'>
-//             <div className='w-full m-[10%]'>
-//             <div className='flex justify-between'>
-//                 <h1 className='text-2xl font-bold'>Edit</h1>
-//                 <button onClick={handleSave} className='bg-blue-500 cursor-pointer hover:bg-red-400 text-white px-3 py-1 rounded'>Save</button>
-//             </div>
-//             <div className='border border-gray-300 p-2 mt-2'>
-//                 <input type='text' className='w-full hover:border hover:border-gray-500 cursor-text p-1 ' placeholder='Title' value={story.title}/>
-//                 <textarea className='w-full hover:border hover:border-gray-500 cursor-text  p-1 mt-2' placeholder='Description' value={story.description}></textarea>
-//                 <textarea className='w-full hover:border hover:border-gray-500 cursor-text   p-1 mt-2' placeholder='Content' value={story.content}></textarea>
-//             </div>
-//             </div>
-//         </div>
-//     </>
-//   )
-// }
-
 // export default Edit
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
@@ -62,7 +30,6 @@ const Edit = () => {
         console.error('Error fetching story:', error);
       }
     };
-
     fetchStory();
   }, [storyid]);
 
@@ -97,7 +64,7 @@ const Edit = () => {
   return (
     <>
       <NavbarStory />
-      <div className="flex justify-center">
+      <div className="flex justify-center items-center">
         <div className="w-full m-[10%]">
           <div className="flex justify-between">
             <h1 className="text-2xl font-bold">Edit</h1>
@@ -108,22 +75,22 @@ const Edit = () => {
               Save
             </button>
           </div>
-          <div className="border border-gray-300 p-2 mt-2">
+          <div className="border border-gray-300 min-h-[50vh] p-2 mt-2">
             <input
               type="text"
-              className="w-full hover:border hover:border-gray-500 cursor-text p-1"
+              className="w-full min-h-[5vh] border border-gray-500 rounded-lg cursor-text p-1"
               placeholder="Title"
               value={story.title}
               onChange={(e) => setStory({ ...story, title: e.target.value })}
             />
             <textarea
-              className="w-full hover:border hover:border-gray-500 cursor-text p-1 mt-2"
+              className="w-full hover:border min-h-[15vh] border border-gray-500 rounded-lg cursor-text p-1 mt-2"
               placeholder="Description"
               value={story.description}
               onChange={(e) => setStory({ ...story, description: e.target.value })}
             ></textarea>
             <textarea
-              className="w-full hover:border hover:border-gray-500 cursor-text p-1 mt-2"
+              className="w-full min-h-[25vh] border border-gray-500 rounded-lg cursor-text p-1 mt-2"
               placeholder="Content"
               value={story.content}
               onChange={(e) => setStory({ ...story, content: e.target.value })}

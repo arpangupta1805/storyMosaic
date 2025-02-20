@@ -5,13 +5,7 @@ const handleAccept = (pullRequestId) => {
   // Get token from localStorage
   const token = localStorage.getItem("token");
   const username = localStorage.getItem("username");
-
-  if (!token) {
-    console.log("User is not authenticated");
-    return;
-  }
-
-  // Send a request to accept the pull request
+  if (!token) {return}
   fetch("http://localhost:3000/api/change-pull-request-status", {
     method: "POST",
     headers: {
@@ -26,8 +20,6 @@ const handleAccept = (pullRequestId) => {
   })
     .then((response) => response.json())
     .then((data) => {
-      console.log(data.message);  // Handle response message (success or failure)
-      // Update the UI or state as needed after success
     })
     .catch((error) => {
       console.error("Error accepting pull request:", error);
@@ -39,12 +31,7 @@ const handleReject = (pullRequestId) => {
   const token = localStorage.getItem("token");
   const username = localStorage.getItem("username");
 
-  if (!token) {
-    console.log("User is not authenticated");
-    return;
-  }
-
-  // Send a request to reject the pull request
+  if (!token) {return}
   fetch("http://localhost:3000/api/change-pull-request-status", {
     method: "POST",
     headers: {
@@ -72,22 +59,15 @@ const RequestCardFan = () => {
   const [requests, setRequests] = useState([]);
 
   useEffect(() => {
-    // Fetch pull requests for the current story
     const fetchPullRequests = async () => {
       try {
         const response = await fetch(`http://localhost:3000/api/pull-requests/${storyId}`);
         const data = await response.json();
-        
-        if (data) {
-          setRequests(data);  // Set the fetched pull requests to the state
-        } else {
-          console.log("No pull requests found");
-        }
-      } catch (error) {
+        if (data) {setRequests(data);}}
+      catch (error) {
         console.error("Error fetching pull requests:", error);
       }
     };
-
     fetchPullRequests();
   }, [storyId]);
 

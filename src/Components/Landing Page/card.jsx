@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 export default function StoryReader() {
   const { storyid } = useParams(); // Get storyId from URL
   const [story, setStory] = useState(null); // State to store fetched story data
   const [liked, setLiked] = useState(false); // State to track if user liked the story
   const [theme, setTheme] = useState("light");
-
+  const username = localStorage.getItem("username");
   useEffect(() => {
     const fetchStory = async () => {
       try {
@@ -33,7 +33,7 @@ export default function StoryReader() {
 
   const handleLikeClick = async () => {
     try {
-      const username = localStorage.getItem("username");
+      
       if (!username) {
         alert("You need to log in to like a story.");
         return;
@@ -90,7 +90,7 @@ export default function StoryReader() {
           <h1 className="text-3xl font-bold my-4 py-4">{title}</h1>
           <div className="flex justify-between items-center gap-2 mt-2">
             <div>
-              <p className="font-semibold my-2"><span className='font-light'>by </span><span className='hover:underline cursor-pointer'>{author}</span></p>
+              <p className="font-semibold my-2"><span className='font-light'>by @</span><Link to={`/user/${username}`} className='hover:underline cursor-pointer'>{author}</Link></p>
               <p className="text-gray-500 text-sm">{date}</p>
             </div>
             <div className="flex items-center gap-2">

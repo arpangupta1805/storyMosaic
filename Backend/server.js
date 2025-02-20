@@ -57,6 +57,21 @@ app.get("/api/authenticate", async(req, res) => {
   res.send(decoded);
 });
 
+app.get("/api/user/:username", async (req, res) => {
+  const { username } = req.params;
+  try {
+    const user = await User.findOne({ username }).select("-password");
+    if (user) {
+      res.json(user);
+    } else {
+      res.status(404).json({ message: "User not found" });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
 app.get("/api/user/:username/stories", async (req, res) => {
   const { username } = req.params;
   console.log(username)
@@ -157,6 +172,16 @@ app.post("/api/edit-story", authenticate, async (req, res) => {
     const editAction = await editStory(title, description, content, username, storyId);
     res.send({message: editAction});
 })
+// Checks wether the username exists or not
+app.get("/api/check-username", async (req, res) => {
+  const username = req.query.username;
+  const user = await User.findOne({ username });
+  if (user) {
+    res.json({ exists: true });
+  } else {
+    res.json({ exists: false });
+  }
+});
 
 app.post("/api/add-editor", authenticate, async (req, res) => {
   const { storyId, author, username } = req.body;
@@ -170,6 +195,8 @@ app.post("/api/add-editor", authenticate, async (req, res) => {
     res.status(500).json({ message: "Server error", error: error.message });
   }
 });
+
+
 app.post("/api/remove-editor", authenticate, async (req, res) => {
   const { storyId, username, author } = req.body;
   console.log(req.body);

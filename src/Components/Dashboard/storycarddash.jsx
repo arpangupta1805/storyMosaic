@@ -34,7 +34,7 @@ const StoryCarddash = () => {
 
   return (
     <>
-    <Link to='/create'><button className="px-4 mx-10 bg-blue-600 text-white py-2 rounded-md mt-6">create</button></Link>
+    <Link to='/create'><button className="px-4 cursor-pointer mx-10 bg-blue-600 text-white py-2 rounded-md mt-6">create</button></Link>
       <div className="bg-gray-100 min-h-screen p-10">
         <h2 className="text-3xl font-bold">Stories</h2>
         <p className="text-gray-600 mt-2 mb-6">
