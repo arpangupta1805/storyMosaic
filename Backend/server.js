@@ -29,7 +29,7 @@ mongoose.connect(process.env.MONGODB_URI, {
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(cors({
-  origin: "http://localhost:5173", // Allow requests from frontend
+  origin: ["http://localhost:5173","https://arpangupta1805.github.io/storyMosaic", "http://127.0.0.1:3001"], // Allow requests from frontend
   credentials: true // Allow cookies and authorization headers
 }));
 
