@@ -1,0 +1,437 @@
+/* Theme Variables */
+:root {
+  --sepia-bg: #f8f4e5;
+  --sepia-text: #5d4037;
+  --sepia-text-secondary: #8d6e63;
+  --sepia-border: #e0d6cc;
+  --sepia-button: #8d6e63;
+  --sepia-button-hover: #6d4c41;
+  --sepia-button-secondary: #e0d6cc;
+  --sepia-button-secondary-hover: #d7cdc3;
+  --sepia-notepad-bg: #fff9e6;
+  --sepia-notepad-border: #d7ccc8;
+  --sepia-line-color: #e0d6cc;
+  
+  --light-bg: #f8f9fa;
+  --light-text: #333333;
+  --light-text-secondary: #666666;
+  --light-border: #e2e8f0;
+  --light-button: #4299e1;
+  --light-button-hover: #3182ce;
+  --light-button-secondary: #edf2f7;
+  --light-button-secondary-hover: #e2e8f0;
+  --light-notepad-bg: #ffffff;
+  --light-notepad-border: #e2e8f0;
+  --light-line-color: #e2e8f0;
+  
+  --dark-bg: #1a202c;
+  --dark-text: #f7fafc;
+  --dark-text-secondary: #a0aec0;
+  --dark-border: #2d3748;
+  --dark-button: #3182ce;
+  --dark-button-hover: #2c5282;
+  --dark-button-secondary: #2d3748;
+  --dark-button-secondary-hover: #4a5568;
+  --dark-notepad-bg: #2d3748;
+  --dark-notepad-border: #4a5568;
+  --dark-line-color: #4a5568;
+  --dark-input-bg: #283141;
+  --dark-focus-border: #63b3ed;
+  --dark-shadow: rgba(0, 0, 0, 0.3);
+}
+
+/* Theme Classes */
+.theme-sepia {
+  background-color: var(--sepia-bg);
+  color: var(--sepia-text);
+}
+
+.theme-light {
+  background-color: var(--light-bg);
+  color: var(--light-text);
+}
+
+.theme-dark {
+  background-color: var(--dark-bg);
+  color: var(--dark-text);
+}
+
+/* Text Colors */
+.theme-text {
+  color: var(--sepia-text);
+}
+
+.theme-light .theme-text {
+  color: var(--light-text);
+}
+
+.theme-dark .theme-text {
+  color: var(--dark-text);
+}
+
+.theme-text-secondary {
+  color: var(--sepia-text-secondary);
+}
+
+.theme-light .theme-text-secondary {
+  color: var(--light-text-secondary);
+}
+
+.theme-dark .theme-text-secondary {
+  color: var(--dark-text-secondary);
+}
+
+/* Buttons */
+.theme-button {
+  background-color: var(--sepia-button);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.theme-light .theme-button {
+  background-color: var(--light-button);
+}
+
+.theme-dark .theme-button {
+  background-color: var(--dark-button);
+  box-shadow: 0 2px 4px var(--dark-shadow);
+}
+
+.theme-button:hover {
+  background-color: var(--sepia-button-hover);
+}
+
+.theme-light .theme-button:hover {
+  background-color: var(--light-button-hover);
+}
+
+.theme-dark .theme-button:hover {
+  background-color: var(--dark-button-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px var(--dark-shadow);
+}
+
+.theme-button-secondary {
+  background-color: var(--sepia-button-secondary);
+  color: var(--sepia-text);
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.theme-light .theme-button-secondary {
+  background-color: var(--light-button-secondary);
+  color: var(--light-text);
+}
+
+.theme-dark .theme-button-secondary {
+  background-color: var(--dark-button-secondary);
+  color: var(--dark-text);
+  box-shadow: 0 2px 4px var(--dark-shadow);
+}
+
+.theme-button-secondary:hover {
+  background-color: var(--sepia-button-secondary-hover);
+}
+
+.theme-light .theme-button-secondary:hover {
+  background-color: var(--light-button-secondary-hover);
+}
+
+.theme-dark .theme-button-secondary:hover {
+  background-color: var(--dark-button-secondary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px var(--dark-shadow);
+}
+
+/* Notepad Container */
+.notepad-container {
+  background-color: var(--sepia-notepad-bg);
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  border-left: 4px solid var(--sepia-notepad-border);
+  transition: all 0.3s ease;
+}
+
+.theme-light .notepad-container {
+  background-color: var(--light-notepad-bg);
+  border-left-color: var(--light-notepad-border);
+}
+
+.theme-dark .notepad-container {
+  background-color: var(--dark-notepad-bg);
+  border-left-color: var(--dark-notepad-border);
+  box-shadow: 0 4px 16px var(--dark-shadow);
+}
+
+/* Media query to remove the red border after 1000px */
+@media (min-width: 1000px) {
+  .notepad-container {
+    border-left: none;
+  }
+  
+  .theme-light .notepad-container,
+  .theme-dark .notepad-container {
+    border-left: none;
+  }
+}
+
+.notepad-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--sepia-border);
+}
+
+.theme-light .notepad-header {
+  border-bottom-color: var(--light-border);
+}
+
+.theme-dark .notepad-header {
+  border-bottom-color: var(--dark-border);
+}
+
+.notepad-title {
+  width: 100%;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--sepia-text);
+  background-color: transparent;
+  border: none;
+  outline: none;
+  padding: 0.5rem 0;
+  border-bottom: 2px solid var(--sepia-border);
+}
+
+.theme-light .notepad-title {
+  color: var(--light-text);
+  border-bottom-color: var(--light-border);
+}
+
+.theme-dark .notepad-title {
+  color: var(--dark-text);
+  border-bottom-color: var(--dark-border);
+  background-color: var(--dark-input-bg);
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+}
+
+.notepad-title:focus {
+  border-bottom-color: var(--sepia-button);
+}
+
+.theme-light .notepad-title:focus {
+  border-bottom-color: var(--light-button);
+}
+
+.theme-dark .notepad-title:focus {
+  border-bottom-color: var(--dark-focus-border);
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.15);
+}
+
+.notepad-section {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--sepia-border);
+}
+
+.theme-light .notepad-section {
+  border-bottom-color: var(--light-border);
+}
+
+.theme-dark .notepad-section {
+  border-bottom-color: var(--dark-border);
+}
+
+.notepad-section:last-child {
+  border-bottom: none;
+}
+
+.notepad-section-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--sepia-text-secondary);
+  margin-bottom: 0.75rem;
+}
+
+.theme-light .notepad-section-title {
+  color: var(--light-text-secondary);
+}
+
+.theme-dark .notepad-section-title {
+  color: var(--dark-text-secondary);
+}
+
+.notepad-textarea {
+  width: 100%;
+  min-height: 150px;
+  resize: vertical;
+  border: 1px solid var(--sepia-border);
+  border-radius: 0.25rem;
+  padding: 0.75rem;
+  font-size: 1rem;
+  color: var(--sepia-text);
+  background-color: var(--sepia-notepad-bg);
+  line-height: 1.5;
+}
+
+.theme-light .notepad-textarea {
+  border-color: var(--light-border);
+  color: var(--light-text);
+  background-color: var(--light-notepad-bg);
+}
+
+.theme-dark .notepad-textarea {
+  border-color: var(--dark-border);
+  color: var(--dark-text);
+  background-color: var(--dark-input-bg);
+  box-shadow: inset 0 1px 2px var(--dark-shadow);
+}
+
+.notepad-textarea:focus {
+  border-color: var(--sepia-button);
+}
+
+.theme-light .notepad-textarea:focus {
+  border-color: var(--light-button);
+}
+
+.theme-dark .notepad-textarea:focus {
+  border-color: var(--dark-focus-border);
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.15);
+}
+
+.notepad-content {
+  min-height: 300px;
+  background-image: linear-gradient(var(--sepia-line-color) 1px, transparent 1px);
+  background-size: 100% 2.2rem;
+  line-height: 2.2rem;
+  padding: 1rem;
+  background-position: 0 1.2rem;
+}
+
+.theme-light .notepad-content {
+  background-image: linear-gradient(var(--light-line-color) 1px, transparent 1px);
+}
+
+.theme-dark .notepad-content {
+  background-image: linear-gradient(var(--dark-line-color) 1px, transparent 1px);
+}
+
+/* Animation for theme transition */
+.min-h-screen, .notepad-container, .notepad-title, .notepad-textarea, .theme-button, .theme-button-secondary {
+  transition: all 0.3s ease;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .notepad-container {
+    border-radius: 0.375rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .notepad-header,
+  .notepad-section {
+    padding: 1.25rem;
+  }
+  
+  .notepad-title {
+    font-size: 1.25rem;
+  }
+  
+  .notepad-section-title {
+    font-size: 1rem;
+  }
+  
+  .notepad-textarea {
+    padding: 0.75rem;
+    font-size: 0.95rem;
+  }
+  
+  .theme-button,
+  .theme-button-secondary {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .notepad-container {
+    border-radius: 0.25rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    border-left-width: 3px;
+  }
+  
+  .notepad-header,
+  .notepad-section {
+    padding: 1rem;
+  }
+  
+  .notepad-title {
+    font-size: 1.1rem;
+    padding: 0.4rem 0;
+  }
+  
+  .notepad-section-title {
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .notepad-textarea {
+    padding: 0.6rem;
+    font-size: 0.9rem;
+    min-height: 80px;
+  }
+  
+  .notepad-content {
+    min-height: 200px;
+    background-size: 100% 2rem;
+    line-height: 2rem;
+    padding: 0.75rem;
+  }
+  
+  .theme-button,
+  .theme-button-secondary {
+    padding: 0.35rem 0.7rem;
+    font-size: 0.9rem;
+    border-radius: 0.2rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .notepad-header,
+  .notepad-section {
+    padding: 0.75rem;
+  }
+  
+  .notepad-title {
+    font-size: 1rem;
+  }
+  
+  .notepad-textarea {
+    padding: 0.5rem;
+    font-size: 0.85rem;
+  }
+  
+  .notepad-content {
+    min-height: 180px;
+    background-size: 100% 1.8rem;
+    line-height: 1.8rem;
+  }
+  
+  .theme-button,
+  .theme-button-secondary {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.85rem;
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+} 

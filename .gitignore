@@ -1,0 +1,13 @@
+# macOS system files
+.DS_Store
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.log
+
+# Global unwanted files
+node_modules/
+*.pyc
+__pycache__/
+venv/

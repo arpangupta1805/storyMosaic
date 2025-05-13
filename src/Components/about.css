@@ -1,0 +1,390 @@
+/* About Page Styling */
+.about-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.about-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(76, 161, 255, 0.1) 0%, transparent 20%),
+    radial-gradient(circle at 80% 70%, rgba(76, 161, 255, 0.1) 0%, transparent 20%);
+  z-index: 0;
+}
+
+.about-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.about-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.about-title {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #2d3748;
+  margin-bottom: 1.5rem;
+  position: relative;
+  display: inline-block;
+}
+
+.about-title::after {
+  content: '';
+  position: absolute;
+  bottom: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #3182ce, #63b3ed);
+  border-radius: 2px;
+}
+
+.about-subtitle {
+  font-size: 1.25rem;
+  color: #4a5568;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.about-content {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.about-section {
+  background: white;
+  border-radius: 1rem;
+  padding: 2.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  animation: slideUp 0.8s ease-in-out;
+  animation-fill-mode: both;
+}
+
+.about-section:nth-child(1) {
+  animation-delay: 0.2s;
+}
+
+.about-section:nth-child(2) {
+  animation-delay: 0.4s;
+}
+
+.about-section:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+.section-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin-bottom: 1.5rem;
+  position: relative;
+  display: inline-block;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -0.25rem;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, #3182ce, #63b3ed);
+  border-radius: 2px;
+}
+
+.about-paragraph {
+  color: #4a5568;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+}
+
+.about-paragraph:last-child {
+  margin-bottom: 0;
+}
+
+.highlight {
+  color: #3182ce;
+  font-weight: 600;
+}
+
+.feature-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.feature-icon {
+  font-size: 1.5rem;
+  color: #3182ce;
+  flex-shrink: 0;
+}
+
+.feature-text {
+  color: #4a5568;
+  line-height: 1.6;
+}
+
+.team-section {
+  text-align: center;
+  margin-top: 4rem;
+  padding: 3rem 0;
+  animation: fadeIn 1s ease-in-out;
+  animation-delay: 0.8s;
+  animation-fill-mode: both;
+}
+
+.team-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin-bottom: 2rem;
+  position: relative;
+  display: inline-block;
+}
+
+.team-title::after {
+  content: '';
+  position: absolute;
+  bottom: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #3182ce, #63b3ed);
+  border-radius: 2px;
+}
+
+.team-description {
+  font-size: 1.1rem;
+  color: #4a5568;
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  line-height: 1.6;
+}
+
+.team-logo {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #3182ce;
+  margin-top: 1rem;
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid #3182ce;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.team-logo:hover {
+  background-color: #3182ce;
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 6px rgba(49, 130, 206, 0.1);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .about-container {
+    padding: 3rem 1.5rem;
+  }
+  
+  .about-title {
+    font-size: 2.5rem;
+  }
+  
+  .about-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .about-section {
+    padding: 2rem;
+  }
+  
+  .section-title {
+    font-size: 1.5rem;
+  }
+  
+  .feature-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Additional responsive styles for smaller screens */
+@media (max-width: 600px) {
+  .about-container {
+    padding: 2rem 1rem;
+  }
+  
+  .about-header {
+    margin-bottom: 2rem;
+  }
+  
+  .about-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .about-title::after {
+    width: 60px;
+    height: 3px;
+  }
+  
+  .about-subtitle {
+    font-size: 1rem;
+  }
+  
+  .about-content {
+    gap: 1.5rem;
+  }
+  
+  .about-section {
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+  }
+  
+  .section-title {
+    font-size: 1.35rem;
+    margin-bottom: 1rem;
+  }
+  
+  .section-title::after {
+    width: 40px;
+    height: 2px;
+  }
+  
+  .about-paragraph {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+  
+  .feature-list {
+    margin-top: 1.5rem;
+    gap: 1rem;
+  }
+  
+  .feature-item {
+    gap: 0.75rem;
+  }
+  
+  .feature-icon {
+    font-size: 1.25rem;
+  }
+  
+  .feature-text {
+    font-size: 0.95rem;
+  }
+  
+  .team-section {
+    margin-top: 2rem;
+    padding: 2rem 0;
+  }
+  
+  .team-title {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .team-title::after {
+    width: 50px;
+  }
+  
+  .team-description {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .team-logo {
+    font-size: 1.1rem;
+    padding: 0.6rem 1.2rem;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 400px) {
+  .about-title {
+    font-size: 1.75rem;
+  }
+  
+  .about-subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .about-section {
+    padding: 1.25rem;
+  }
+  
+  .section-title {
+    font-size: 1.25rem;
+  }
+  
+  .about-paragraph {
+    font-size: 0.9rem;
+  }
+  
+  .feature-icon {
+    font-size: 1.1rem;
+  }
+  
+  .feature-text {
+    font-size: 0.9rem;
+  }
+  
+  .team-title {
+    font-size: 1.5rem;
+  }
+  
+  .team-description {
+    font-size: 0.9rem;
+  }
+  
+  .team-logo {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+  }
+} 
